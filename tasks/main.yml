@@ -1,0 +1,17 @@
+---
+- name: Check the presence of the lazygit binary.
+  stat:
+    path: "{{ lazygit_bin_path }}"
+  register: lazygit_check
+
+- name: Check the lazygit version.
+  shell: "{{ lazygit_bin_path }} --version"
+  failed_when: false
+  changed_when: false
+  register: lazygit_current_version
+
+- name: Install lazygit v{{ lazygit_version }}
+  include_tasks: install.yml
+  when: >-
+    not lazygit_check.stat.exists
+    or lazygit_version not in lazygit_current_version.stdout

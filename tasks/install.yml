@@ -1,0 +1,23 @@
+---
+- name: Download the lazygit archive.
+  get_url:
+    url: "{{ lazygit_download_url }}"
+    dest: /tmp
+    checksum: sha256:{{ lazygit_checksum_url }}
+    mode: 0755
+  register: lazygit_download
+
+- name: Unarchive the lazygit archive.
+  unarchive:
+    src: "{{ lazygit_download.dest }}"
+    dest: /tmp
+    mode: 0755
+    remote_src: true
+
+- name: Copy the lazygit binary into place.
+  copy:
+    src: /tmp/lazygit
+    dest: "{{ lazygit_bin_path }}"
+    mode: 0755
+    remote_src: true
+  become: true

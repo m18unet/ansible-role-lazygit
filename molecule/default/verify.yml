@@ -1,0 +1,19 @@
+---
+- name: Verify
+  hosts: all
+  become: false
+  gather_facts: false
+
+  vars_files:
+    - ../../defaults/main.yml
+
+  tasks:
+    - name: Check the lazygit version.
+      command: "{{ lazygit_bin_path }} --version"
+      changed_when: false
+      register: lazygit_verify_version
+
+    - name: Verify lazygit's version is {{ lazygit_version }}
+      assert:
+        that:
+          - lazygit_version in lazygit_verify_version.stdout

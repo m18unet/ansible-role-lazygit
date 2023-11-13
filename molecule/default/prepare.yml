@@ -1,0 +1,11 @@
+---
+- name: Prepare
+  hosts: all
+  become: false
+  gather_facts: false
+
+  vars:
+    lazygit_version: '0.38.2'
+
+  roles:
+    - m18unet.lazygit

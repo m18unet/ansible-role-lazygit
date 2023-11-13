@@ -1,0 +1,10 @@
+---
+# See available releases: https://github.com/jesseduffield/lazygit/releases
+lazygit_version: '0.40.2'
+lazygit_platform: Linux
+lazygit_arch: x86_64
+lazygit_bin_path: /usr/local/bin/lazygit
+lazygit_release_url: https://github.com/jesseduffield/lazygit/releases/download/v{{ lazygit_version }}
+lazygit_archive_name: lazygit_{{ lazygit_version }}_{{ lazygit_platform }}_{{ lazygit_arch }}.tar.gz
+lazygit_download_url: "{{ lazygit_release_url }}/{{ lazygit_archive_name }}"
+lazygit_checksum_url: "{{ lazygit_release_url }}/checksums.txt"
